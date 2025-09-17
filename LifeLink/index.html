@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LifeLink - Donor Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <?php include('header.php'); ?>
+
+  <h2>Register as a Donor</h2>
+
+  <form action="donor_register.php" method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" required>
+
+    <label>Blood Type:</label>
+    <select name="blood_type" required>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+    </select>
+
+    <label>Location:</label>
+    <input type="text" name="location" required>
+
+    <label>Contact Number:</label>
+    <input type="text" name="contact" required>
+
+    <button type="submit">Register</button>
+  </form>
+
+</body>
+</html>
