@@ -11,8 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $urgency_level = $_POST['urgency_level'];
    $status = $_POST['status'];
 
-    $sql = "INSERT INTO request (requester_id, blood_type, healthcare_name, urgency_level, status)
-            VALUES ('$req_id', '$bloodtype', '$hospital', '$urgency', '$stat')";
+   $sql = "INSERT INTO requests (requester_id, blood_type, healthcare_name, urgency_level, status)
+        VALUES (?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssss", $requester_id, $blood_type, $healthcare_name, $urgency_level, $status);
     
     if ($conn->query($sql)) {
         echo "<script>alert('Request sent!')</script>";
