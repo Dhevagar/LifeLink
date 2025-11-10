@@ -1,10 +1,10 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'blood_donation')
+$conn = new mysqli('localhost', 'root', '', 'blood donation');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $req_id = $_POST['requester'];
     $bloodtype = $_POST['blood'];
     $hospital = $_POST['hospital_name'];
