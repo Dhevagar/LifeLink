@@ -122,3 +122,20 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  background: #d62828; 
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #a91c1c;
+  transform: scale(1.05);
+}
