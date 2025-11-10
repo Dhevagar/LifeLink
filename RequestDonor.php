@@ -16,11 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssss", $requester_id, $blood_type, $healthcare_name, $urgency_level, $status);
     
-    if ($conn->query($sql)) {
-        echo "<script>alert('Request sent!')</script>";
-    } else {
-        echo "Error inserting data!";
-    }
+    if ($stmt->execute()) {
+        echo "<script>alert('Donor request submitted successfully!'); window.location.href='FindADonor.php';</script>";
+}   else {
+        echo "<script>alert('Error: " . $stmt->error . "');</script>";
 }
 $conn->close();
 ?>
