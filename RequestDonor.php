@@ -5,11 +5,11 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $req_id = $_POST['requester'];
-    $bloodtype = $_POST['blood'];
-    $hospital = $_POST['hospital_name'];
-    $urgency = $_POST['urgency'];
-    $stat = $_POST['state'];
+   $requester_id = $_POST['requester_id'];
+   $blood_type = $_POST['blood_type'];
+   $healthcare_name = $_POST['healthcare_name'];
+   $urgency_level = $_POST['urgency_level'];
+   $status = $_POST['status'];
 
     $sql = "INSERT INTO request (requester_id, blood_type, healthcare_name, urgency_level, status)
             VALUES ('$req_id', '$bloodtype', '$hospital', '$urgency', '$stat')";
