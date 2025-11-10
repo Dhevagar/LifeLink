@@ -139,3 +139,32 @@ body {
   background: #a91c1c;
   transform: scale(1.05);
 }
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 10%;
+  gap: 40px;
+}
+
+.content .section-image {
+  width: 45%;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.content .section-text {
+  width: 50%;
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.content p {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
