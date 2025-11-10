@@ -1,7 +1,8 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f7f7f7;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background: #fafafa;
+  color: #333;
 }
 
 header {
