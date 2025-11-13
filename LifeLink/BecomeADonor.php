@@ -108,6 +108,109 @@
     </div>
   </section>
 
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('donorForm');
+    const overlay = document.getElementById('popupOverlay');
+    const titleEl = document.getElementById('popupTitle');
+    const msgEl = document.getElementById('popupMessage');
+    const okBtn = document.getElementById('popupOk');
+    const closeBtn = document.getElementById('popupClose');
+
+    function showPopup(success, message) {
+      titleEl.textContent = success ? 'Registration Successful' : 'Registration Failed';
+      titleEl.style.color = success ? '#27ae60' : '#e74c3c';
+      msgEl.textContent = message;
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hidePopup() {
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    okBtn.addEventListener('click', hidePopup);
+    closeBtn.addEventListener('click', hidePopup);
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      const data = new FormData(form);
+
+      try {
+        const resp = await fetch('RegisterDonor.php', {
+          method: 'POST',
+          body: data
+        });
+        const json = await resp.json();
+        showPopup(json.success, json.message);
+        // ✅ Automatically refresh the form after success
+        if (json.success) {
+        const popup = document.createElement('div');
+        popup.innerHTML = `
+          <div id="popup-overlay" style="
+              position: fixed;
+              top: 0; left: 0;
+              width: 100%; height: 100%;
+              background: rgba(0, 0, 0, 0.6);
+              display: flex; justify-content: center; align-items: center;
+              z-index: 9999;">
+            <div style="
+                background: rgba(255, 255, 255, 0.95);
+                padding: 30px 40px;
+                border-radius: 15px;
+                box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+                text-align: center;
+                font-family: 'Poppins', sans-serif;">
+              <h2 style="color: #3498db; margin-bottom: 10px;">Registration Successful!</h2>
+              <p style="margin-bottom: 20px; color: #333;">We will notify you when your blood type matches.</p>
+              <button id="okButton" style="
+                  background-color: #3498db;
+                  color: white;
+                  border: none;
+                  border-radius: 10px;
+                  padding: 10px 25px;
+                  font-size: 16px;
+                  cursor: pointer;
+                  transition: background 0.3s;">
+                OK
+              </button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(popup);
+
+        // When OK is clicked, close popup and refresh form
+        document.getElementById('okButton').addEventListener('click', () => {
+          popup.remove();
+          window.location.reload();
+        });
+      }
+
+
+      } catch (err) {
+        console.error(err);
+        showPopup(false, 'Network or server error. Please try again.');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  });
+  </script>
+
 
 </head>
 </body>
