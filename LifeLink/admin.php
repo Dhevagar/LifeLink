@@ -77,6 +77,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
             <th>Location</th>
             <th>Contact</th>
             <th>Request Date</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
