@@ -40,7 +40,9 @@ table tbody tr:hover { background-color: #ffe6e6; }
     </thead>
     <tbody>
       <?php
-        $result = $conn->query("SELECT * FROM donors");
+       $stmt = $conn->prepare("SELECT id, name, blood_type, location, contact, register_date FROM donors ORDER BY register_date DESC");
+$stmt->execute();
+$result = $stmt->get_result();
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             echo "<tr>
