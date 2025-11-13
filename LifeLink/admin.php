@@ -104,6 +104,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
             echo "<tr><td colspan='8' class='text-center'>No requests found</td></tr>";
         }
         ?>
+$stmt->close();
+$conn->close();
         </tbody>
     </table>
 </div>
