@@ -82,8 +82,10 @@ if (!isset($_SESSION['admin_logged_in'])) {
         </thead>
         <tbody>
         <?php
-        $result = $conn->query("SELECT * FROM requests");
-        if ($result->num_rows > 0) {
+        $stmt = $conn->prepare("SELECT id, requester_id, blood_type, healthcare_name, urgency_level, status, request_date FROM requests ORDER BY request_date DESC");
+        $stmt->execute();
+        $result = $stmt->get_result();
+         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
                         <td>{$row['id']}</td>
