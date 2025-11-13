@@ -16,46 +16,6 @@
       flex-direction: column;
     }
 
-    /* Navbar */
-    .navbar {
-      background: white;
-      padding: 10px 40px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #3498db;
-    }
-
-    .logo img {
-      height: 50px;
-    }
-
-    /* Form styling */
     .form-container {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
