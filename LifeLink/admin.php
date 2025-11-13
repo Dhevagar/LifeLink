@@ -88,7 +88,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
          if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>{$row['id']}</td>
+                       <td><?= htmlspecialchars($row['requester_id']) ?></td>
                         <td>" . htmlspecialchars($row['name']) . "</td>
                         <td>{$row['blood_type']}</td>
                         <td>{$row['location']}</td>
