@@ -94,6 +94,10 @@ if (!isset($_SESSION['admin_logged_in'])) {
                         <td>{$row['location']}</td>
                         <td>{$row['contact']}</td>
                         <td>{$row['request_date']}</td>
+                        <td>
+                       <a href='edit_request.php?id=<?= urlencode($row['id']) ?>' class='btn btn-sm btn-primary action-btn'>Edit</a>
+                      <a href='delete_request.php?id=<?= urlencode($row['id']) ?>' class='btn btn-sm btn-danger action-btn' onclick='return confirm("Are you sure?");'>Delete</a>
+                      </td>
                       </tr>";
             }
         } else {
