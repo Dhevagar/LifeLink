@@ -102,7 +102,7 @@
 
   <div class="form-container">
     <h2>Request a Donor</h2>
-    <form action="FindADonor.php" method="POST">
+    <form action="RequestDonor.php" method="POST">
       <div class="mb-3">
         <label class="form-label">Requester ID</label>
         <input type="text" name="requester_id" class="form-control" required>
