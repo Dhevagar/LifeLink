@@ -41,6 +41,20 @@
     </div>
   </section>
 
+  <section style="background: #fdf3f3; padding: 60px 20px;">
+    <div style="max-width: 800px; margin: auto; text-align: center;">
+      <h2 style="color: #d62828; font-size: 2rem; margin-bottom: 20px;">Eligibility to Donate</h2>
+      <ul style="list-style: none; text-align: left; font-size: 1.1rem; margin-top: 20px;">
+        <li>✔️ Aged between 18 and 60 years old</li>
+        <li>✔️ Weigh at least 45kg</li>
+        <li>✔️ In good general health</li>
+        <li>✔️ No recent infections or illnesses</li>
+        <li>✔️ Haven’t donated in the last 3 months</li>
+      </ul>
+    </div>
+  </section>
+
+
 </head>
 </body>
 </html>
