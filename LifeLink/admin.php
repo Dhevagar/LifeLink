@@ -9,6 +9,12 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
+<style>
+table tbody tr:hover { background-color: #ffe6e6; }
+.action-btn { margin-right: 5px; }
+</style>
+    
 <head>
   <title>Admin Dashboard - LifeLink</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
