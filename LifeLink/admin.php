@@ -26,7 +26,7 @@ table tbody tr:hover { background-color: #ffe6e6; }
 
   <!-- Donors Table -->
   <h4 class="mb-3">Registered Donors</h4>
-  <table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-responsive">
     <thead class="table-danger">
       <tr>
         <th>ID</th>
