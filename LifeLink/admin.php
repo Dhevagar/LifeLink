@@ -34,7 +34,8 @@ table tbody tr:hover { background-color: #ffe6e6; }
         <th>Blood Type</th>
         <th>Location</th>
         <th>Contact</th>
-        <th>Registration Date</th>
+       <th>Registration Date</th>
+       <th>Actions</th>
       </tr>
     </thead>
     <tbody>
