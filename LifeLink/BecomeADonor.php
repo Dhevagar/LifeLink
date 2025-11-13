@@ -54,6 +54,48 @@
     </div>
   </section>
 
+  <section id="donor-form" style="padding: 80px 20px; text-align: center;">
+    <h2 style="color: #d62828; font-size: 2rem; margin-bottom: 20px;">Register as a Donor</h2>
+    <form id="donorForm" class="donor-form">
+      <label>Name:</label>
+      <input type="text" name="full_name" required>
+
+      <label>Blood Type:</label>
+      <select name="blood_type" required>
+        <option value="">-</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+      </select>
+
+      <label>Location:</label>
+      <select name="address" required>
+        <option value="">-</option>
+        <option value="Sunway Medical Centre Penang">Sunway Medical Centre Penang</option>
+        <option value="Island Hospital">Island Hospital</option>
+        <option value="Penang Adventist Hospital">Penang Adventist Hospital</option>
+        <option value="Pantai Hospital Penang">Pantai Hospital Penang</option>
+        <option value="Hospital Pulau Pinang">Hospital Pulau Pinang</option>
+      </select>
+
+      <label>Contact Number:</label>
+      <input type="text" name="phone" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" required>
+
+      <button type="submit" class="btn-gradient">Submit Registration</button>
+    </form>
+
+    <p style="margin-top: 20px; font-size: 0.9rem; color: #555;"> 
+        Your information is kept private and shared only with patients or hospitals in need.
+    </p>
+
 
 </head>
 </body>
