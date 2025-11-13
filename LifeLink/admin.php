@@ -47,12 +47,12 @@ if (!isset($_SESSION['admin_logged_in'])) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>{$row['id']}</td>
+                        <td>" . htmlspecialchars($row['id']) . "</td>
                         <td>" . htmlspecialchars($row['name']) . "</td>
-                        <td>{$row['blood_type']}</td>
-                        <td>{$row['location']}</td>
-                        <td>{$row['contact']}</td>
-                        <td>{$row['register_date']}</td>
+                        <td>" . htmlspecialchars($row['blood_type']) . "</td>
+                        <td>" . htmlspecialchars($row['location']) . "</td>
+                        <td>" . htmlspecialchars($row['contact']) . "</td>
+                        <td>" . htmlspecialchars($row['register_date']) . "</td>
                         <td>
                             <a href='edit_donor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
                             <a href='delete_donor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
@@ -72,10 +72,11 @@ if (!isset($_SESSION['admin_logged_in'])) {
         <thead class="table-danger">
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Requester ID</th>
             <th>Blood Type</th>
-            <th>Location</th>
-            <th>Contact</th>
+            <th>Healthcare Name</th>
+            <th>Urgency Level</th>
+            <th>Status</th>
             <th>Request Date</th>
             <th>Actions</th>
         </tr>
@@ -85,29 +86,35 @@ if (!isset($_SESSION['admin_logged_in'])) {
         $stmt = $conn->prepare("SELECT id, requester_id, blood_type, healthcare_name, urgency_level, status, request_date FROM requests ORDER BY request_date DESC");
         $stmt->execute();
         $result = $stmt->get_result();
-         if ($result->num_rows > 0) {
+
+        if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                       <td><?= htmlspecialchars($row['requester_id']) ?></td>
-                        <td>" . htmlspecialchars($row['name']) . "</td>
-                        <td>{$row['blood_type']}</td>
-                        <td>{$row['location']}</td>
-                        <td>{$row['contact']}</td>
-                        <td>{$row['request_date']}</td>
+                        <td>" . htmlspecialchars($row['id']) . "</td>
+                        <td>" . htmlspecialchars($row['requester_id']) . "</td>
+                        <td>" . htmlspecialchars($row['blood_type']) . "</td>
+                        <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
+                        <td>" . htmlspecialchars($row['urgency_level']) . "</td>
+                        <td>" . htmlspecialchars($row['status']) . "</td>
+                        <td>" . htmlspecialchars($row['request_date']) . "</td>
                         <td>
-                       <a href='edit_request.php?id=<?= urlencode($row['id']) ?>' class='btn btn-sm btn-primary action-btn'>Edit</a>
-                      <a href='delete_request.php?id=<?= urlencode($row['id']) ?>' class='btn btn-sm btn-danger action-btn' onclick='return confirm("Are you sure?");'>Delete</a>
-                      </td>
+                            <a href='edit_request.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
+                            <a href='delete_request.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                        </td>
                       </tr>";
             }
         } else {
             echo "<tr><td colspan='8' class='text-center'>No requests found</td></tr>";
         }
         ?>
-$stmt->close();
-$conn->close();
         </tbody>
     </table>
 </div>
+
+<?php
+// Close statement and connection
+$stmt->close();
+$conn->close();
+?>
 </body>
 </html>
