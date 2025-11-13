@@ -4,6 +4,76 @@
   <meta charset="UTF-8">
   <title>LifeLink - Become a Donor</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05); 
+      backdrop-filter: blur(3px); 
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .popup {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+      padding: 30px;
+      animation: popupFade 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    @keyframes popupFade {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup h2 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: #d62828;
+    }
+
+    .popup p {
+      color: #333;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .popup .btn {
+      background: linear-gradient(45deg, #74ebd5, #acb6e5);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin: 0 5px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .popup .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .popup .btn.secondary {
+      background: #ccc;
+      color: #333;
+    }
+  </style>
+
 <body>
 
  <nav class="navbar">
