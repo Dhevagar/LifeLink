@@ -68,7 +68,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
     <!-- Requests Table -->
     <h4 class="mt-5 mb-3">Blood Requests</h4>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
         <tr>
             <th>ID</th>
