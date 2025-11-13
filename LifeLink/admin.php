@@ -47,7 +47,7 @@ $result = $stmt->get_result();
           while ($row = $result->fetch_assoc()) {
             echo "<tr>
               <td>{$row['id']}</td>
-              <td>{$row['name']}</td>
+              <td><?= htmlspecialchars($row['name']) ?></td>
               <td>{$row['blood_type']}</td>
               <td>{$row['location']}</td>
               <td>{$row['contact']}</td>
