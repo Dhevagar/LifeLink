@@ -9,6 +9,18 @@
 </head>
 
 <body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="LifeLinkLogo.png" alt="LifeLink Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Homepage</a></li>
+        <li><a href="BecomeADonor.php">Become a Donor</a></li>
+        <li><a href="FindADonor.php" class="active">Find a Donor</a></li>
+      </ul>
+    </div>
+  </nav>
 </body>
 
 </html>
