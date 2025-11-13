@@ -96,6 +96,18 @@
         Your information is kept private and shared only with patients or hospitals in need.
     </p>
 
+    <div id="popupOverlay" class="popup-overlay" aria-hidden="true">
+      <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+        <h2 id="popupTitle">Status</h2>
+        <p id="popupMessage">Message</p>
+        <div>
+          <button id="popupOk" class="btn">OK</button>
+          <button id="popupClose" class="btn secondary">Close</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 </head>
 </body>
