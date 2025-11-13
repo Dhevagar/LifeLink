@@ -101,7 +101,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                       </tr>";
             }
         } else {
-            echo "<tr><td colspan='6' class='text-center'>No requests found</td></tr>";
+            echo "<tr><td colspan='8' class='text-center'>No requests found</td></tr>";
         }
         ?>
         </tbody>
