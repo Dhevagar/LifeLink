@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$dbname = "lifelink";  // change to your actual database name
+$dbname = "blood donation"; 
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 
