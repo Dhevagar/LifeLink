@@ -42,7 +42,7 @@ Add
     <h3 class="text-center mb-3">Admin Login</h3>
 
     <?php if (isset($error)) : ?>
-        <div class="alert alert-danger"><?php echo $error; ?></div>
+        <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
     <?php endif; ?>
 
     <form method="POST">
