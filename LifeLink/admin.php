@@ -59,8 +59,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
                         <td>" . htmlspecialchars($row['email']) . "</td>
                         <td>" . htmlspecialchars($row['created_at']) . "</td>
                         <td>
-                            <a href='EditDonor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
-                            <a href='DeleteDonor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                            <a href='EditDonor.php?donor_id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
+                            <a href='DeleteDonor.php?donor_id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                       </tr>";
             }
