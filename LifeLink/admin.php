@@ -1,11 +1,12 @@
 <?php
-include('connection.php');
 session_start();
 
 if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: login.php');
     exit();
 }
+
+include('connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +60,6 @@ if (!isset($_SESSION['admin_logged_in'])) {
                         <td>" . htmlspecialchars($row['email']) . "</td>
                         <td>" . htmlspecialchars($row['created_at']) . "</td>
                         <td>
-                            <a href='EditDonor.php?donor_id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
                             <a href='DeleteDonor.php?donor_id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                       </tr>";
@@ -102,7 +102,6 @@ if (!isset($_SESSION['admin_logged_in'])) {
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
                         <td>" . htmlspecialchars($row['status']) . "</td>
                         <td>
-                            <a href='EditRequest.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
                             <a href='DeleteRequest.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                       </tr>";
