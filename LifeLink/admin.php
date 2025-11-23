@@ -28,18 +28,17 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
     <h2 class="text-danger mb-4">Admin Dashboard</h2>
 
-    <!-- Donors Table -->
     <h4 class="mb-3">Registered Donors</h4>
     <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>Donor ID</th>
+            <th>Full Name</th>
             <th>Blood Type</th>
-            <th>Location</th>
-            <th>Contact</th>
-            <th>Registration Date</th>
-            <th>Actions</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Created At</th>
         </tr>
         </thead>
         <tbody>
