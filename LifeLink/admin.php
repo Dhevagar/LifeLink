@@ -39,6 +39,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
             <th>Phone</th>
             <th>Email</th>
             <th>Created At</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
