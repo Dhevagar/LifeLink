@@ -77,44 +77,55 @@ include('connection.php');
         </tbody>
     </table>
 
-    <h4 class="mt-5 mb-3">Blood Requests</h4>
+    <h2>Blood Requests</h2>
     <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
-        <tr>
-            <th>ID</th>
-            <th>Requester ID</th>
-            <th>Blood Type</th>
-            <th>Healthcare Name</th>
-            <th>Urgency Level</th>
-            <th>Status</th>
-            <th>Request Date</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th>Request ID</th>
+                <th>Requester ID</th>
+                <th>Blood Type</th>
+                <th>Healthcare Name</th>
+                <th>Urgency Level</th>
+                <th>Status</th>
+                <th>Assigned Donor ID</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
         <?php
-        $stmt = $conn->prepare("SELECT request_id, requester_id, blood_type, healthcare_name, urgency_level, status AS request_status, assigned_donor_id FROM requests ORDER BY request_id DESC");
-        $stmt_requests = $conn->prepare($query_requests);
+        // Prepare and execute the requests query
+        $stmt_requests = $conn->prepare(
+            "SELECT 
+                request_id, 
+                requester_id, 
+                blood_type, 
+                healthcare_name, 
+                urgency_level, 
+                status AS request_status, 
+                assigned_donor_id 
+            FROM requests 
+            ORDER BY request_id DESC"
+        );
         $stmt_requests->execute();
         $result_requests = $stmt_requests->get_result();
-        
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+
+        if ($result_requests->num_rows > 0) {
+            while ($row = $result_requests->fetch_assoc()) {
                 echo "<tr>
                         <td>" . htmlspecialchars($row['request_id']) . "</td>
                         <td>" . htmlspecialchars($row['requester_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
-                        <td><span class='badge bg-info'>" . htmlspecialchars($row['request_status']) . "</span></td>
-                        <td>" . ($row['assigned_donor_id'] ? "Donor #" . htmlspecialchars($row['assigned_donor_id']) : '-') . "</td>
+                        <td>" . htmlspecialchars($row['request_status']) . "</td>
+                        <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
-                            <a href='approve_request.php?id=" . urlencode($row['request_id']) . "' class='btn btn-success btn-sm mb-1'>Approve</a>
-                            <a href='reject_request.php?id=" . urlencode($row['request_id']) . "' class='btn btn-warning btn-sm mb-1'>Reject</a>
-                            <a href='assign_donor.php?id=" . urlencode($row['request_id']) . "' class='btn btn-primary btn-sm mb-1'>Assign Donor</a>
-                            <a href='delete_request.php?id=" . urlencode($row['request_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this request?\");'>Delete</a>
+                            <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
+                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=approved' class='btn btn-sm btn-success action-btn'>Approve</a>
+                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=completed' class='btn btn-sm btn-info action-btn'>Complete</a>
+                            <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure you want to delete this request?\");'>Delete</a>
                         </td>
-                      </tr>";
+                    </tr>";
             }
         } else {
             echo "<tr><td colspan='8' class='text-center'>No requests found</td></tr>";
@@ -122,6 +133,7 @@ include('connection.php');
         ?>
         </tbody>
     </table>
+
 </div>
 
 <?php
