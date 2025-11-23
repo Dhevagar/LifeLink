@@ -43,7 +43,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
         </thead>
         <tbody>
         <?php
-        $stmt = $conn->prepare("SELECT id, name, blood_type, location, contact, register_date FROM donors ORDER BY register_date DESC");
+        $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, created_at FROM donor ORDER BY created_at DESC");
         $stmt->execute();
         $result = $stmt->get_result();
 
