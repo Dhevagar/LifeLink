@@ -3,7 +3,7 @@ include('connection.php');
 
 if (isset($_GET['request_id'])) {
     $request_id = $_GET['request_id'];
-    $stmt = $conn->prepare("UPDATE requests SET status='Approved' WHERE request_id=?");
+    $stmt = $conn->prepare("UPDATE requests SET request_status='Approved' WHERE request_id=?");
     $stmt->bind_param("i", $request_id);
     $stmt->execute();
 }
