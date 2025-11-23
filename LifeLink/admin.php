@@ -95,13 +95,12 @@ if (!isset($_SESSION['admin_logged_in'])) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>" . htmlspecialchars($row['id']) . "</td>
+                        <td>" . htmlspecialchars($row['request_id']) . "</td>
                         <td>" . htmlspecialchars($row['requester_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
                         <td>" . htmlspecialchars($row['status']) . "</td>
-                        <td>" . htmlspecialchars($row['request_date']) . "</td>
                         <td>
                             <a href='edit_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
                             <a href='delete_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
