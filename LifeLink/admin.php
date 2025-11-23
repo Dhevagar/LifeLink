@@ -84,23 +84,23 @@ if (!isset($_SESSION['admin_logged_in'])) {
         </thead>
         <tbody>
         <?php
-        $stmt = $conn->prepare("SELECT id, requester_id, blood_type, healthcare_name, urgency_level, status, request_date FROM requests ORDER BY request_date DESC");
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $query_requests = "SELECT request_id, requester_id, blood_type, healthcare_name, urgency_level, status FROM requests";
+        $stmt_requests = $conn->prepare($query_requests);
+        $stmt_requests->execute();
+        $result_requests = $stmt_requests->get_result();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>" . htmlspecialchars($row['id']) . "</td>
+                        <td>" . htmlspecialchars($row['request_id']) . "</td>
                         <td>" . htmlspecialchars($row['requester_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
                         <td>" . htmlspecialchars($row['status']) . "</td>
-                        <td>" . htmlspecialchars($row['request_date']) . "</td>
                         <td>
-                            <a href='edit_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
-                            <a href='delete_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                            <a href='edit_request.php?request_id=" . $row['request_id'] . "'>Edit</a> | 
+                            <a href='delete_request.php?request_id=" . $row['request_id'] . "' onclick='return confirm(\"Delete this request?\");'>Delete</a>
                         </td>
                       </tr>";
             }
