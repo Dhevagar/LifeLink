@@ -58,7 +58,6 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['address']) . "</td>
                         <td>" . htmlspecialchars($row['phone']) . "</td>
                         <td>" . htmlspecialchars($row['email']) . "</td>
-                        <td>" . htmlspecialchars($row['created_at']) . "</td>
                         <td><span class='badge bg-info'>" . htmlspecialchars($row['donor_status']) . "</span></td>
                         <td>" . htmlspecialchars($row['last_donation_date'] ?? '-') . "</td>
                         <td>
