@@ -62,10 +62,10 @@ include('connection.php');
                         <td><span class='badge bg-info'>" . htmlspecialchars($row['donor_status']) . "</span></td>
                         <td>" . htmlspecialchars($row['last_donation_date'] ?? '-') . "</td>
                         <td>
-                            <a href='approve_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-success btn-sm mb-1'>Approve</a>
-                            <a href='reject_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-warning btn-sm mb-1'>Reject</a>
-                            <a href='notify_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-primary btn-sm mb-1'>Notify</a>
-                            <a href='mark_donated.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-dark btn-sm mb-1'>Mark Donated</a>
+                            <a href='ApproveDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-success action-btn'>Approve</a>
+                            <a href='RejectDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn'>Reject</a>
+                            <a href='NotifyDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-info action-btn'>Notify</a>
+                            <a href='MarkDonated.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
                             <a href='delete_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
                         </td>
                       </tr>";
@@ -93,7 +93,7 @@ include('connection.php');
         </thead>
         <tbody>
         <?php
-        // Prepare and execute the requests query
+
         $stmt_requests = $conn->prepare(
             "SELECT 
                 request_id, 
@@ -121,9 +121,9 @@ include('connection.php');
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
-                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=approved' class='btn btn-sm btn-success action-btn'>Approve</a>
-                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=completed' class='btn btn-sm btn-info action-btn'>Complete</a>
-                            <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure you want to delete this request?\");'>Delete</a>
+                            <a href='ApproveRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-success action-btn'>Approve</a>
+                            <a href='RejectRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn'>Reject</a>
+                            <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                     </tr>";
             }
@@ -137,7 +137,7 @@ include('connection.php');
 </div>
 
 <?php
-// Close statement and connection
+
 $stmt->close();
 $conn->close();
 ?>
