@@ -10,7 +10,7 @@ if (!isset($_GET['donor_id'])) {
 $donor_id = $_GET['donor_id'];
 
 // Prepare delete statement
-$sql = "DELETE FROM donors WHERE donor_id = ?";
+$sql = "DELETE FROM donor WHERE donor_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $donor_id);
 
