@@ -50,12 +50,11 @@ if (!isset($_SESSION['admin_logged_in'])) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>" . htmlspecialchars($row['id']) . "</td>
-                        <td>" . htmlspecialchars($row['name']) . "</td>
+                        <td>" . htmlspecialchars($row['full_name']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
-                        <td>" . htmlspecialchars($row['location']) . "</td>
-                        <td>" . htmlspecialchars($row['contact']) . "</td>
-                        <td>" . htmlspecialchars($row['register_date']) . "</td>
+                        <td>" . htmlspecialchars($row['address']) . "</td>
+                        <td>" . htmlspecialchars($row['phone']) . "</td>
+                        <td>" . htmlspecialchars($row['email']) . "</td>
                         <td>
                             <a href='edit_donor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
                             <a href='delete_donor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
