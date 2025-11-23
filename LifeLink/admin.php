@@ -45,7 +45,7 @@ include('connection.php');
         </thead>
         <tbody>
         <?php
-        $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, created_at FROM donor ORDER BY created_at DESC");
+        $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, donor_status, last_donation_date FROM donors ORDER BY created_at DESC");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -59,8 +59,14 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['phone']) . "</td>
                         <td>" . htmlspecialchars($row['email']) . "</td>
                         <td>" . htmlspecialchars($row['created_at']) . "</td>
+                        <td><span class='badge bg-info'>" . htmlspecialchars($row['donor_status']) . "</span></td>
+                        <td>" . htmlspecialchars($row['last_donation_date'] ?? '-') . "</td>
                         <td>
-                            <a href='DeleteDonor.php?donor_id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                            <a href='approve_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-success btn-sm mb-1'>Approve</a>
+                            <a href='reject_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-warning btn-sm mb-1'>Reject</a>
+                            <a href='notify_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-primary btn-sm mb-1'>Notify</a>
+                            <a href='mark_donated.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-dark btn-sm mb-1'>Mark Donated</a>
+                            <a href='delete_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
                         </td>
                       </tr>";
             }
@@ -87,7 +93,7 @@ include('connection.php');
         </thead>
         <tbody>
         <?php
-        $query_requests = "SELECT request_id, requester_id, blood_type, healthcare_name, urgency_level, status FROM requests";
+        $stmt = $conn->prepare("SELECT request_id, requester_id, blood_type, healthcare_name, urgency_level, status AS request_status, assigned_donor_id FROM requests ORDER BY request_id DESC");
         $stmt_requests = $conn->prepare($query_requests);
         $stmt_requests->execute();
         $result_requests = $stmt_requests->get_result();
@@ -100,9 +106,13 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
-                        <td>" . htmlspecialchars($row['status']) . "</td>
+                        <td><span class='badge bg-info'>" . htmlspecialchars($row['request_status']) . "</span></td>
+                        <td>" . ($row['assigned_donor_id'] ? "Donor #" . htmlspecialchars($row['assigned_donor_id']) : '-') . "</td>
                         <td>
-                            <a href='DeleteRequest.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                            <a href='approve_request.php?id=" . urlencode($row['request_id']) . "' class='btn btn-success btn-sm mb-1'>Approve</a>
+                            <a href='reject_request.php?id=" . urlencode($row['request_id']) . "' class='btn btn-warning btn-sm mb-1'>Reject</a>
+                            <a href='assign_donor.php?id=" . urlencode($row['request_id']) . "' class='btn btn-primary btn-sm mb-1'>Assign Donor</a>
+                            <a href='delete_request.php?id=" . urlencode($row['request_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this request?\");'>Delete</a>
                         </td>
                       </tr>";
             }
