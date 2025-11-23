@@ -61,10 +61,8 @@ include('connection.php');
                         <td><span class='badge bg-info'>" . htmlspecialchars($row['donor_status']) . "</span></td>
                         <td>" . htmlspecialchars($row['last_donation_date'] ?? '-') . "</td>
                         <td>
-                            <a href='ApproveDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-success action-btn'>Approve</a>
-                            <a href='RejectDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn'>Reject</a>
                             <a href='MarkDonated.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
-                            <a href='delete_donor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
+                            <a href='DeleteDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
                         </td>
                       </tr>";
             }
@@ -119,8 +117,7 @@ include('connection.php');
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
-                            <a href='ApproveRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-success action-btn'>Approve</a>
-                            <a href='RejectRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn'>Reject</a>
+                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=completed' class='btn btn-sm btn-success action-btn'>Complete</a>
                             <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                     </tr>";
