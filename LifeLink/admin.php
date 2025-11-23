@@ -50,11 +50,13 @@ if (!isset($_SESSION['admin_logged_in'])) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
+                        <td>" . htmlspecialchars($row['donor_id']) . "</td>
                         <td>" . htmlspecialchars($row['full_name']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['address']) . "</td>
                         <td>" . htmlspecialchars($row['phone']) . "</td>
                         <td>" . htmlspecialchars($row['email']) . "</td>
+                        <td>" . htmlspecialchars($row['created_at']) . "</td>
                         <td>
                             <a href='edit_donor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
                             <a href='delete_donor.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
@@ -88,20 +90,20 @@ if (!isset($_SESSION['admin_logged_in'])) {
         $stmt_requests = $conn->prepare($query_requests);
         $stmt_requests->execute();
         $result_requests = $stmt_requests->get_result();
-
+        
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>" . htmlspecialchars($row['donor_id']) . "</td>
-                        <td>" . htmlspecialchars($row['full_name']) . "</td>
+                        <td>" . htmlspecialchars($row['id']) . "</td>
+                        <td>" . htmlspecialchars($row['requester_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
-                        <td>" . htmlspecialchars($row['address']) . "</td>
-                        <td>" . htmlspecialchars($row['phone']) . "</td>
-                        <td>" . htmlspecialchars($row['email']) . "</td>
-                        <td>" . htmlspecialchars($row['created_at']) . "</td>
+                        <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
+                        <td>" . htmlspecialchars($row['urgency_level']) . "</td>
+                        <td>" . htmlspecialchars($row['status']) . "</td>
+                        <td>" . htmlspecialchars($row['request_date']) . "</td>
                         <td>
-                            <a href='edit_request.php?request_id=" . $row['request_id'] . "'>Edit</a> | 
-                            <a href='delete_request.php?request_id=" . $row['request_id'] . "' onclick='return confirm(\"Delete this request?\");'>Delete</a>
+                            <a href='edit_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
+                            <a href='delete_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                       </tr>";
             }
