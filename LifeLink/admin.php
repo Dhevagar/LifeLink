@@ -68,7 +68,6 @@ if (!isset($_SESSION['admin_logged_in'])) {
         </tbody>
     </table>
 
-    <!-- Requests Table -->
     <h4 class="mt-5 mb-3">Blood Requests</h4>
     <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
@@ -100,8 +99,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
                         <td>" . htmlspecialchars($row['status']) . "</td>
                         <td>" . htmlspecialchars($row['request_date']) . "</td>
                         <td>
-                            <a href='edit_request.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
-                            <a href='delete_request.php?id=" . urlencode($row['id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+                            <a href='edit_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Edit</a>
+                            <a href='delete_request.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                       </tr>";
             }
