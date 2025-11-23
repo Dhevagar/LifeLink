@@ -66,7 +66,7 @@ include('connection.php');
                             <a href='RejectDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-danger action-btn'>Reject</a>
                             <a href='NotifyDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-info action-btn'>Notify</a>
                             <a href='MarkDonated.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
-                            <a href='delete_donor.php?id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
+                            <a href='delete_donor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
                         </td>
                       </tr>";
             }
