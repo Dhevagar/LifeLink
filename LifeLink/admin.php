@@ -2,7 +2,6 @@
 include('connection.php');
 session_start();
 
-// Ensure admin is logged in
 if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: login.php');
     exit();
@@ -22,6 +21,11 @@ if (!isset($_SESSION['admin_logged_in'])) {
 </head>
 <body class="bg-light">
 <div class="container mt-5">
+
+    <div class="text-end mb-3">
+        <a href="logout.php" class="btn btn-secondary">Logout</a>
+    </div>
+
     <h2 class="text-danger mb-4">Admin Dashboard</h2>
 
     <!-- Donors Table -->
