@@ -97,7 +97,7 @@ include('connection.php');
                 blood_type, 
                 healthcare_name, 
                 urgency_level, 
-                status AS request_status, 
+                status, 
                 assigned_donor_id 
             FROM requests 
             ORDER BY request_id DESC"
