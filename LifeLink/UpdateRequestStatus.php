@@ -14,7 +14,7 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
 $sql = "UPDATE requests SET status = '$status' WHERE request_id = $id";
     
     if ($conn->query($sql) === TRUE) {
-        header("Location: BloodRequestTable.php?message=Status updated successfully");
+       header("Location: admin.php?message=Status updated successfully");
         exit();
     } else {
         echo "Error updating record: " . $conn->error;
