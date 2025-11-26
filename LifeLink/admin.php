@@ -55,7 +55,6 @@ include('connection.php');
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
 
-                // Status badge + toggle button logic
                 if ($row['status'] === 'Donated') {
                     $statusBadge = "<span class='badge bg-success'>Donated</span>";
                     $toggleBtn = "
@@ -139,8 +138,14 @@ include('connection.php');
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
-                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=completed' class='btn btn-sm btn-success action-btn'>Complete</a>
-                            <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-danger action-btn' onclick='return confirm(\"Are you sure?\");'>Delete</a>
+
+                            <!-- ✅ YOUR REQUESTED LINE (corrected only for request_id) -->
+                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=completed' 
+                               class='btn btn-sm btn-success action-btn'>Complete</a>
+
+                            <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' 
+                               class='btn btn-sm btn-danger action-btn' 
+                               onclick='return confirm(\"Are you sure?\");'>Delete</a>
                         </td>
                     </tr>";
             }
