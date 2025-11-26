@@ -113,7 +113,7 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
-                        <td>" . htmlspecialchars($row['request_status']) . "</td>
+                        <td>" . htmlspecialchars($row['status']) . "</td>
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
