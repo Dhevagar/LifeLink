@@ -10,17 +10,51 @@
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #74ebd5, #acb6e5);
-      min-height: 100vh;
       margin: 0;
-      display: flex;
-      flex-direction: column;
+      padding: 0;
     }
 
+    /* Navbar matching index.html */
+    .navbar {
+      background-color: #fff;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .nav-links li a.active {
+      color: #3498db;
+    }
+
+    /* Form container styling */
     .form-container {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      width: 100%;
       max-width: 600px;
       margin: 60px auto;
       padding: 40px;
@@ -45,12 +79,13 @@
     }
   </style>
 </head>
-
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
-        <img src="LifeLinkLogo.png" alt="LifeLink Logo">
+        <img src="LifeLinkLogo.png" alt="LifeLink Logo" height="50">
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Homepage</a></li>
@@ -60,6 +95,7 @@
     </div>
   </nav>
 
+  <!-- Form Section -->
   <div class="form-container">
     <h2>Request a Donor</h2>
     <form action="RequestDonor.php" method="POST">
@@ -106,22 +142,11 @@
         </select>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Status</label>
-        <select name="status" class="form-select" required>
-          <option value="">Select Status</option>
-          <option value="Pending">Pending</option>
-          <option value="Approved">Approved</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
-
       <div class="text-center">
         <button type="submit" class="btn btn-primary w-100 py-2">Submit Request</button>
       </div>
     </form>
   </div>
+
 </body>
-
 </html>
-
