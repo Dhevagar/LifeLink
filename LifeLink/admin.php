@@ -39,7 +39,7 @@ include('connection.php');
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Created At</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
         </thead>
