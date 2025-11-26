@@ -139,9 +139,10 @@ include('connection.php');
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
 
-                            <!-- ✅ YOUR REQUESTED LINE (corrected only for request_id) -->
-                            <a href='UpdateRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=completed' 
-                               class='btn btn-sm btn-success action-btn'>Complete</a>
+                            <a href='ToggleRequestStatus.php?request_id=" . urlencode($row['request_id']) . "&status=" . ($row['request_status'] === "Completed" ? "Pending" : "Completed") . "' 
+                            class='btn btn-sm " . ($row['request_status'] === "Completed" ? "btn-danger" : "btn-success") . " action-btn'>
+                            " . ($row['request_status'] === "Completed" ? "Undo Complete" : "Complete") . "
+                            </a>
 
                             <a href='DeleteRequest.php?request_id=" . urlencode($row['request_id']) . "' 
                                class='btn btn-sm btn-danger action-btn' 
