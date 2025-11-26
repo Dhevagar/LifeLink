@@ -29,7 +29,9 @@ include('connection.php');
 
     <h2 class="text-danger mb-4">Admin Dashboard</h2>
 
+    <!-- ===================== DONOR TABLE ===================== -->
     <h4 class="mb-3">Registered Donors</h4>
+
     <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
         <tr>
@@ -43,6 +45,7 @@ include('connection.php');
             <th>Actions</th>
         </tr>
         </thead>
+
         <tbody>
         <?php
         $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, status FROM donor ORDER BY donor_id DESC");
@@ -51,6 +54,22 @@ include('connection.php');
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+
+                // Status badge + toggle button logic
+                if ($row['status'] === 'Donated') {
+                    $statusBadge = "<span class='badge bg-success'>Donated</span>";
+                    $toggleBtn = "
+                        <a href='ToggleDonorStatus.php?donor_id=" . urlencode($row['donor_id']) . "&status=Undonated' 
+                           class='btn btn-sm btn-danger action-btn'>Mark Undonated</a>
+                    ";
+                } else {
+                    $statusBadge = "<span class='badge bg-secondary'>Undonated</span>";
+                    $toggleBtn = "
+                        <a href='ToggleDonorStatus.php?donor_id=" . urlencode($row['donor_id']) . "&status=Donated' 
+                           class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
+                    ";
+                }
+
                 echo "<tr>
                         <td>" . htmlspecialchars($row['donor_id']) . "</td>
                         <td>" . htmlspecialchars($row['full_name']) . "</td>
@@ -58,37 +77,41 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['address']) . "</td>
                         <td>" . htmlspecialchars($row['phone']) . "</td>
                         <td>" . htmlspecialchars($row['email']) . "</td>
-                       <td><span class='badge bg-info'>" . htmlspecialchars($row['status']) . "</span></td>
+                        <td>$statusBadge</td>
                         <td>
-                            <a href='MarkDonated.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
-                            <a href='DeleteDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
+                            $toggleBtn
+                            <a href='DeleteDonor.php?donor_id=" . urlencode($row['donor_id']) . "'
+                               class='btn btn-danger btn-sm'
+                               onclick='return confirm(\"Delete this donor?\");'>
+                               Delete
+                            </a>
                         </td>
-                      </tr>";
+                    </tr>";
             }
         } else {
-            echo "<tr><td colspan='7' class='text-center'>No donors found</td></tr>";
+            echo "<tr><td colspan='8' class='text-center'>No donors found</td></tr>";
         }
         ?>
         </tbody>
     </table>
 
+    <!-- ===================== BLOOD REQUESTS TABLE ===================== -->
     <h2>Blood Requests</h2>
     <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
-            <tr>
-                <th>Request ID</th>
-                <th>Requester ID</th>
-                <th>Blood Type</th>
-                <th>Healthcare Name</th>
-                <th>Urgency Level</th>
-                <th>Status</th>
-                <th>Assigned Donor ID</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Request ID</th>
+            <th>Requester ID</th>
+            <th>Blood Type</th>
+            <th>Healthcare Name</th>
+            <th>Urgency Level</th>
+            <th>Status</th>
+            <th>Assigned Donor ID</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         <?php
-
         $stmt_requests = $conn->prepare(
             "SELECT 
                 request_id, 
@@ -131,7 +154,6 @@ include('connection.php');
 </div>
 
 <?php
-
 $stmt->close();
 $conn->close();
 ?>
