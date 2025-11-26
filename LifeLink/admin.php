@@ -113,7 +113,7 @@ include('connection.php');
                 request_id, 
                 blood_type, 
                 healthcare_name, 
-                status, 
+                status AS request_status, 
                 assigned_donor_id 
             FROM requests 
             ORDER BY request_id DESC"
@@ -127,7 +127,7 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['request_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
-                        <td>" . htmlspecialchars($row['status']) . "</td>
+                        <td>" . htmlspecialchars($row['request_status']) . "</td>
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
