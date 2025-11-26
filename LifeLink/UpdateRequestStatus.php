@@ -11,8 +11,8 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
         die("Invalid status value.");
     }
 
-    $sql = "UPDATE blood_request SET status = '$status' WHERE id = $id";
-
+$sql = "UPDATE requests SET status = '$status' WHERE request_id = $id";
+    
     if ($conn->query($sql) === TRUE) {
         header("Location: BloodRequestTable.php?message=Status updated successfully");
         exit();
