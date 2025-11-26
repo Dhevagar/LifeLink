@@ -113,7 +113,6 @@ include('connection.php');
                 request_id, 
                 blood_type, 
                 healthcare_name, 
-                urgency_level, 
                 status, 
                 assigned_donor_id 
             FROM requests 
@@ -128,7 +127,6 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['request_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
-                        <td>" . htmlspecialchars($row['urgency_level']) . "</td>
                         <td>" . htmlspecialchars($row['status']) . "</td>
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
