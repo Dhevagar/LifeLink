@@ -29,7 +29,6 @@ include('connection.php');
 
     <h2 class="text-danger mb-4">Admin Dashboard</h2>
 
-    <!-- ===================== DONOR TABLE ===================== -->
     <h4 class="mb-3">Registered Donors</h4>
 
     <table class="table table-bordered table-striped table-responsive">
@@ -94,27 +93,24 @@ include('connection.php');
         </tbody>
     </table>
 
-    <!-- ===================== BLOOD REQUESTS TABLE ===================== -->
+
     <h2>Blood Requests</h2>
     <table class="table table-bordered table-striped table-responsive">
         <thead class="table-danger">
-        <tr>
-            <th>Request ID</th>
-            <th>Requester ID</th>
-            <th>Blood Type</th>
-            <th>Healthcare Name</th>
-            <th>Urgency Level</th>
-            <th>Status</th>
-            <th>Assigned Donor ID</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th>Request ID</th>
+                <th>Blood Type</th>
+                <th>Healthcare Name</th>
+                <th>Status</th>
+                <th>Assigned Donor ID</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
         <?php
         $stmt_requests = $conn->prepare(
             "SELECT 
                 request_id, 
-                requester_id, 
                 blood_type, 
                 healthcare_name, 
                 urgency_level, 
@@ -130,7 +126,6 @@ include('connection.php');
             while ($row = $result_requests->fetch_assoc()) {
                 echo "<tr>
                         <td>" . htmlspecialchars($row['request_id']) . "</td>
-                        <td>" . htmlspecialchars($row['requester_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
                         <td>" . htmlspecialchars($row['urgency_level']) . "</td>
