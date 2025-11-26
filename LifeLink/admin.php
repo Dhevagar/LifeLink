@@ -58,8 +58,7 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['address']) . "</td>
                         <td>" . htmlspecialchars($row['phone']) . "</td>
                         <td>" . htmlspecialchars($row['email']) . "</td>
-                        <td><span class='badge bg-info'>" . htmlspecialchars($row['donor_status']) . "</span></td>
-                        <td>" . htmlspecialchars($row['last_donation_date'] ?? '-') . "</td>
+                       <td><span class='badge bg-info'>" . htmlspecialchars($row['status']) . "</span></td>
                         <td>
                             <a href='MarkDonated.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
                             <a href='DeleteDonor.php?donor_id=" . urlencode($row['donor_id']) . "' class='btn btn-danger btn-sm mb-1' onclick='return confirm(\"Delete this donor?\");'>Delete</a>
