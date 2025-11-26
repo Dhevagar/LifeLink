@@ -45,7 +45,7 @@ include('connection.php');
         </thead>
         <tbody>
         <?php
-        $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, donor_status, last_donation_date FROM donors ORDER BY created_at DESC");
+        $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, status FROM donor ORDER BY donor_id DESC");
         $stmt->execute();
         $result = $stmt->get_result();
 
