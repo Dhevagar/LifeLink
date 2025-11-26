@@ -99,9 +99,10 @@
   <div class="form-container">
     <h2>Request a Donor</h2>
     <form action="RequestDonor.php" method="POST">
+      
       <div class="mb-3">
-        <label class="form-label">Requester ID</label>
-        <input type="text" name="requester_id" class="form-control" required>
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" required>
       </div>
 
       <div class="mb-3">
@@ -128,17 +129,6 @@
           <option value="Penang Adventist Hospital">Penang Adventist Hospital</option>
           <option value="Pantai Hospital Penang">Pantai Hospital Penang</option>
           <option value="Hospital Pulau Pinang">Hospital Pulau Pinang</option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Urgency Level</label>
-        <select name="urgency_level" class="form-select" required>
-          <option value="">Select Urgency</option>
-          <option value="Low">Low</option>
-          <option value="Moderate">Moderate</option>
-          <option value="High">High</option>
-          <option value="Critical">Critical</option>
         </select>
       </div>
 
