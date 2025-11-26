@@ -127,7 +127,11 @@ include('connection.php');
                         <td>" . htmlspecialchars($row['request_id']) . "</td>
                         <td>" . htmlspecialchars($row['blood_type']) . "</td>
                         <td>" . htmlspecialchars($row['healthcare_name']) . "</td>
-                        <td>" . htmlspecialchars($row['request_status']) . "</td>
+                        <td>
+                            <span class='badge " . ($row['request_status'] === "Completed" ? "bg-success" : "bg-secondary") . "'>
+                                " . htmlspecialchars($row['request_status']) . "
+                            </span>
+                        </td>
                         <td>" . ($row['assigned_donor_id'] ? htmlspecialchars($row['assigned_donor_id']) : 'Not Assigned') . "</td>
                         <td>
                             <a href='AssignDonor.php?request_id=" . urlencode($row['request_id']) . "' class='btn btn-sm btn-primary action-btn'>Assign</a>
