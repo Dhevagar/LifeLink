@@ -9,12 +9,14 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #74ebd5, #acb6e5);
+      background: url('HomepagePic.jpg') no-repeat center center fixed;
+      background-size: cover;  
+      min-height: 100vh;
       margin: 0;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Navbar matching index.html */
     .navbar {
       background-color: #fff;
       padding: 1rem 3rem;
@@ -50,7 +52,6 @@
       color: #3498db;
     }
 
-    /* Form container styling */
     .form-container {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
@@ -81,7 +82,6 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
@@ -95,7 +95,6 @@
     </div>
   </nav>
 
-  <!-- Form Section -->
   <div class="form-container">
     <h2>Request a Donor</h2>
     <form action="RequestDonor.php" method="POST">
