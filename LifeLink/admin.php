@@ -70,7 +70,28 @@ include('connection.php');
 
         <tbody>
         <?php
-        $stmt = $conn->prepare("SELECT donor_id, full_name, blood_type, address, phone, email, status FROM donor ORDER BY donor_id DESC");
+        if (!empty($_GET['search'])) {
+            $search = "%" . $_GET['search'] . "%";
+            $stmt = $conn->prepare("
+                SELECT donor_id, full_name, blood_type, address, phone, email, status 
+                FROM donor 
+                WHERE donor_id LIKE ? 
+                OR full_name LIKE ? 
+                OR blood_type LIKE ? 
+                OR address LIKE ?
+                OR phone LIKE ?
+                OR email LIKE ?
+                ORDER BY donor_id DESC
+            ");
+            $stmt->bind_param("ssssss", $search, $search, $search, $search, $search, $search);
+        } else {
+            $stmt = $conn->prepare("
+                SELECT donor_id, full_name, blood_type, address, phone, email, status 
+                FROM donor 
+                ORDER BY donor_id DESC
+            ");
+        }
+
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -131,16 +152,40 @@ include('connection.php');
         </thead>
         <tbody>
         <?php
-        $stmt_requests = $conn->prepare(
-            "SELECT 
-                request_id, 
-                blood_type, 
-                healthcare_name, 
-                status AS request_status, 
-                assigned_donor_id 
-            FROM requests 
-            ORDER BY request_id DESC"
-        );
+        if (!empty($_GET['search'])) {
+            $search = "%" . $_GET['search'] . "%";
+            $stmt_requests = $conn->prepare("
+                SELECT 
+                    request_id, 
+                    name,
+                    blood_type, 
+                    healthcare_name,  
+                    status AS request_status, 
+                    assigned_donor_id 
+                FROM requests
+                WHERE request_id LIKE ?
+                OR name LIKE ?
+                OR blood_type LIKE ?
+                OR healthcare_name LIKE ?
+                OR status LIKE ?
+                OR assigned_donor_id LIKE ?
+                ORDER BY request_id DESC
+            ");
+            $stmt_requests->bind_param("ssssss", $search, $search, $search, $search, $search, $search);
+        } else {
+            $stmt_requests = $conn->prepare("
+                SELECT 
+                    request_id, 
+                    name,
+                    blood_type, 
+                    healthcare_name,  
+                    status AS request_status, 
+                    assigned_donor_id 
+                FROM requests
+                ORDER BY request_id DESC
+            ");
+        }
+
         $stmt_requests->execute();
         $result_requests = $stmt_requests->get_result();
 
