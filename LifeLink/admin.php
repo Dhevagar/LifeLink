@@ -18,6 +18,22 @@ include('connection.php');
     <style>
         table tbody tr:hover { background-color: #ffe6e6; }
         .action-btn { margin-right: 5px; }
+
+        .fixed-table {
+            table-layout: fixed;      
+            width: 100%;              
+        }
+
+        .fixed-table th, 
+        .fixed-table td {
+            word-wrap: break-word;   
+            text-align: center;       
+            vertical-align: middle;
+        }
+
+        .action-btn {
+            width: 110px;            
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -31,7 +47,7 @@ include('connection.php');
 
     <h4 class="mb-3">Registered Donors</h4>
 
-    <table class="table table-bordered table-striped table-responsive">
+    <table class="table table-bordered table-striped fixed-table">
         <thead class="table-danger">
         <tr>
             <th>Donor ID</th>
@@ -95,7 +111,7 @@ include('connection.php');
 
 
     <h2>Blood Requests</h2>
-    <table class="table table-bordered table-striped table-responsive">
+    <table class="table table-bordered table-striped fixed-table">
         <thead class="table-danger">
             <tr>
                 <th>Request ID</th>
