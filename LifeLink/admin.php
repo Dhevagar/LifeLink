@@ -45,6 +45,13 @@ include('connection.php');
 
     <h2 class="text-danger mb-4">Admin Dashboard</h2>
 
+    <form method="GET" class="mb-4 d-flex" style="max-width: 400px;">
+        <input type="text" name="search" class="form-control me-2"
+            placeholder="Search donors or requests..."
+            value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+        <button class="btn btn-primary">Search</button>
+    </form>
+
     <h4 class="mb-3">Registered Donors</h4>
 
     <table class="table table-bordered table-striped fixed-table">
