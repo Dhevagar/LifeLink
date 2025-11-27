@@ -58,13 +58,13 @@ include('connection.php');
                     $statusBadge = "<span class='badge bg-success'>Donated</span>";
                     $toggleBtn = "
                         <a href='ToggleDonorStatus.php?donor_id=" . urlencode($row['donor_id']) . "&status=Undonated' 
-                           class='btn btn-sm btn-danger action-btn'>Mark Undonated</a>
+                           class='btn btn-sm btn-danger action-btn'>Undonated</a>
                     ";
                 } else {
                     $statusBadge = "<span class='badge bg-secondary'>Undonated</span>";
                     $toggleBtn = "
                         <a href='ToggleDonorStatus.php?donor_id=" . urlencode($row['donor_id']) . "&status=Donated' 
-                           class='btn btn-sm btn-primary action-btn'>Mark Donated</a>
+                           class='btn btn-sm btn-primary action-btn'>Donated</a>
                     ";
                 }
 
