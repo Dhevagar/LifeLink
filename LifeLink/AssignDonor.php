@@ -8,12 +8,42 @@ if (!isset($_GET['request_id'])) {
 
 $request_id = intval($_GET['request_id']);
 
-// Fetch all donors
-$donor_stmt = $conn->prepare("SELECT donor_id, full_name, blood_type FROM donor ORDER BY full_name ASC");
+$request_stmt = $conn->prepare("SELECT blood_type FROM requests WHERE request_id = ?");
+$request_stmt->bind_param("i", $request_id);
+$request_stmt->execute();
+$request_result = $request_stmt->get_result();
+
+if ($request_result->num_rows == 0) {
+    die("Invalid Request ID");
+}
+
+$request = $request_result->fetch_assoc();
+$recipient_blood = $request['blood_type'];
+
+$compatible = [];
+
+switch ($recipient_blood) {
+    case 'A+': $compatible = ['A+', 'A-', 'O+', 'O-']; break;
+    case 'A-': $compatible = ['A-', 'O-']; break;
+    case 'B+': $compatible = ['B+', 'B-', 'O+', 'O-']; break;
+    case 'B-': $compatible = ['B-', 'O-']; break;
+    case 'AB+': $compatible = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']; break;
+    case 'AB-': $compatible = ['AB-', 'A-', 'B-', 'O-']; break;
+    case 'O+': $compatible = ['O+', 'O-']; break;
+    case 'O-': $compatible = ['O-']; break;
+}
+
+$compatible_list = "'" . implode("','", $compatible) . "'";
+
+$donor_stmt = $conn->prepare("
+    SELECT donor_id, full_name, blood_type 
+    FROM donor 
+    WHERE blood_type IN ($compatible_list)
+    ORDER BY full_name ASC
+");
 $donor_stmt->execute();
 $donors = $donor_stmt->get_result();
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['donor_id'])) {
     $donor_id = intval($_POST['donor_id']);
 
@@ -40,18 +70,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['donor_id'])) {
 
 <div class="container mt-5">
     <h2 class="text-danger mb-4">Assign Donor to Request #<?php echo $request_id; ?></h2>
+    <h5 class="mb-3">Recipient Blood Type: <span class="text-primary"><?php echo $recipient_blood; ?></span></h5>
 
     <form method="POST">
         <div class="mb-3">
-            <label class="form-label">Select Donor</label>
+            <label class="form-label">Select Compatible Donor</label>
             <select name="donor_id" class="form-select" required>
                 <option value="">-- Select Donor --</option>
 
-                <?php while ($donor = $donors->fetch_assoc()): ?>
-                    <option value="<?php echo $donor['donor_id']; ?>">
-                        <?php echo $donor['full_name']; ?> (<?php echo $donor['blood_type']; ?>)
-                    </option>
-                <?php endwhile; ?>
+                <?php if ($donors->num_rows == 0): ?>
+                    <option disabled>No compatible donors available</option>
+                <?php else: ?>
+                    <?php while ($donor = $donors->fetch_assoc()): ?>
+                        <option value="<?php echo $donor['donor_id']; ?>">
+                            <?php echo $donor['full_name']; ?> (<?php echo $donor['blood_type']; ?>)
+                        </option>
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </select>
         </div>
 
